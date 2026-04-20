@@ -81,10 +81,35 @@
             padding: 3rem 7%;
             text-align: center;
         }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
         .footer-bottom p {
             color: #94a3b8;
             font-weight: 600;
             font-size: 0.95rem;
+        }
+        .footer-maps {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .footer-maps:hover {
+            color: #002147;
+        }
+        .footer-maps svg {
+            width: 18px;
+            height: 18px;
+            color: #ef4444;
         }
     </style>
 </head>
@@ -98,6 +123,12 @@
 
     <footer class="site-footer">
         <div class="footer-bottom">
+            <a href="https://maps.app.goo.gl/gCW7yQagGNKvDVgm8" target="_blank" class="footer-maps">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Lokasi Kami
+            </a>
             <p>&copy; 2026 DarkandBright. Solusi Website Terjangkau untuk UMKM Indonesia.</p>
         </div>
     </footer>
