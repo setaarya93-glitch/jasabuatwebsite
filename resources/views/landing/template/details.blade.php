@@ -96,6 +96,8 @@
         .btn-order { width: 100%; padding: 1.1rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; transition: all 0.3s; margin-bottom: 1rem; }
         .btn-order:hover { background: var(--accent); }
         .btn-contact { width: 100%; padding: 0.9rem; background: transparent; color: var(--primary); border: 2px solid var(--border); border-radius: 8px; font-weight: 700; cursor: pointer; }
+        .btn-demo { width: 100%; padding: 0.9rem; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; margin-bottom: 1rem; text-align: center; text-decoration: none; display: block; transition: all 0.3s; }
+        .btn-demo:hover { background: #2563eb; }
 
         /* RESPONSIVE */
         @media (max-width: 1000px) {
@@ -204,7 +206,10 @@
                         @endforeach
                     </ul>
 
-                    <a href="https://wa.me/6281234567890?text=Halo%20DarkandBright,%20saya%20tertarik%20untuk%20memesan%20template%20{{ $template['name'] }}%20paket%20{{ ucfirst($key) }}.%20Mohon%20infonya." target="_blank" class="btn-order" style="text-align: center; text-decoration: none; display: block;">
+                    <a href="{{ route('template.demo', $template['id']) }}" target="_blank" class="btn-demo">
+                        🎨 LIHAT DEMO LIVE
+                    </a>
+                    <a href="https://wa.me/6285859044929?text=Halo%20DarkandBright,%20saya%20tertarik%20untuk%20memesan%20template%20{{ urlencode($template['name']) }}%20paket%20{{ ucfirst($key) }}.%20Mohon%20infonya." target="_blank" class="btn-order" style="text-align: center; text-decoration: none; display: block;">
                         PESAN SEKARANG (WHATSAPP)
                     </a>
                     <button class="btn-contact">Hubungi Penjual</button>

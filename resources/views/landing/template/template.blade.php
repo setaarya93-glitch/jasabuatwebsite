@@ -25,7 +25,7 @@
                         <p class="template-price">Rp {{ $tmpl->packages['basic']['price'] ?? '150.000' }}</p>
                         <div class="template-actions">
                             <a href="{{ route('template.details', $tmpl->id) }}" class="btn-template-primary">Pesan Sekarang</a>
-                            <button class="btn-template-outline">Demo</button>
+                            <a href="{{ route('template.demo', $tmpl->id) }}" class="btn-template-outline" target="_blank">Demo</a>
                         </div>
                     </div>
                 </div>

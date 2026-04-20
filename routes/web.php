@@ -25,6 +25,17 @@ Route::get('/template/{id}', function ($id) {
     return view('landing.template.details', compact('template'));
 })->name('template.details');
 
+Route::get('/demo/{id}', function ($id) {
+    $template = Template::findOrFail($id);
+    $demoView = 'landing.demo.' . strtolower(str_replace(' ', '_', $template->name));
+    
+    if (!view()->exists($demoView)) {
+        $demoView = 'landing.demo.default';
+    }
+    
+    return view($demoView, compact('template'));
+})->name('template.demo');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
