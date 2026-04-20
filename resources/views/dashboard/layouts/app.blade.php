@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Zetaz Admin Dashboard</title>
+    <title>DarkandBright Admin Dashboard</title>
     @vite(['resources/css/app.css'])
     
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -45,7 +45,7 @@
     <!-- Sidebar -->
     <aside class="sidebar w-64 flex flex-col fixed inset-y-0 shadow-lg">
         <div class="h-16 flex items-center justify-center border-b border-slate-800">
-            <h1 class="text-2xl font-bold text-blue-500">Zetaz Admin <i data-lucide="zap" class="inline"></i></h1>
+            <h1 class="text-2xl font-bold text-blue-500">DarkandBright Admin <i data-lucide="zap" class="inline"></i></h1>
         </div>
         <nav class="flex-1 px-2 py-4 space-y-2">
             <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-3 rounded-md transition-colors {{ request()->routeIs('dashboard') ? 'active' : '' }}">

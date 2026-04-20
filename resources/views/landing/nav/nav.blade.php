@@ -2,7 +2,7 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="nav-brand">
-            <span class="brand-dark">Zetaz</span><span class="brand-bright">Digital</span>
+            <span class="brand-dark">Dark</span><span class="brand-bright">andBright</span>
         </div>
         
         <ul class="nav-links">
@@ -14,7 +14,7 @@
         </ul>
         
         <div class="nav-actions">
-            <a href="https://wa.me/6281234567890?text=Halo%20Zetaz%20Digital,%20saya%20tertarik%20memesan%20layanan%20Anda." target="_blank" class="btn-nav" style="text-decoration: none;">
+            <a href="https://wa.me/6281234567890?text=Halo%20DarkandBright,%20saya%20tertarik%20memesan%20layanan%20Anda." target="_blank" class="btn-nav" style="text-decoration: none;">
                 Pesan Sekarang
             </a>
         </div>

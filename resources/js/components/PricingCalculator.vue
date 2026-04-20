@@ -100,7 +100,7 @@ const selectedItems = computed(() => {
 const whatsappMessage = computed(() => {
     const businessName = businessTypes.find(b => b.id === selectedBusinessType.value)?.name || 'Bisnis';
 
-    let message = `Halo Zetaz Digital! 👋\n\n`;
+    let message = `Halo DarkandBright! 👋\n\n`;
     message += `Saya tertarik membuat website untuk bisnis saya.\n\n`;
     message += `*Jenis Bisnis:* ${businessName}\n`;
     message += `*Fitur yang dipilih:*\n`;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $template['name'] }} - Details | Zetaz Digital</title>
+    <title>{{ $template['name'] }} - Details | DarkandBright</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=outfit:400,600,700,800" rel="stylesheet" />
     <style>
@@ -112,7 +112,7 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 Kembali
             </a>
-            <a href="{{ route('home') }}" class="logo">Zetaz<span>Digital</span></a>
+            <a href="{{ route('home') }}" class="logo">Dark<span>andBright</span></a>
         </div>
     </nav>
 
@@ -123,9 +123,9 @@
             <h1>{{ $template['name'] }}</h1>
             
             <div class="seller-info">
-                <div class="seller-avatar">ZD</div>
+                <div class="seller-avatar">DB</div>
                 <div>
-                    <span class="seller-name">Zetaz Digital</span>
+                    <span class="seller-name">DarkandBright</span>
                     <span class="rating-stars">★ {{ $template['rating'] }}</span>
                     <span class="orders-count">({{ $template['reviews_count'] }} Pesanan Selesai)</span>
                 </div>
@@ -204,7 +204,7 @@
                         @endforeach
                     </ul>
 
-                    <a href="https://wa.me/6281234567890?text=Halo%20Zetaz%20Digital,%20saya%20tertarik%20untuk%20memesan%20template%20{{ $template['name'] }}%20paket%20{{ ucfirst($key) }}.%20Mohon%20infonya." target="_blank" class="btn-order" style="text-align: center; text-decoration: none; display: block;">
+                    <a href="https://wa.me/6281234567890?text=Halo%20DarkandBright,%20saya%20tertarik%20untuk%20memesan%20template%20{{ $template['name'] }}%20paket%20{{ ucfirst($key) }}.%20Mohon%20infonya." target="_blank" class="btn-order" style="text-align: center; text-decoration: none; display: block;">
                         PESAN SEKARANG (WHATSAPP)
                     </a>
                     <button class="btn-contact">Hubungi Penjual</button>

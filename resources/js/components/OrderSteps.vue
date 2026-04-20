@@ -70,7 +70,7 @@ const steps = [
                         <h3>Masih bingung memilih fitur?</h3>
                         <p>Konsultasi gratis via WhatsApp. Kami bantu rekomendasikan paket terbaik untuk bisnis Anda.</p>
                     </div>
-                    <a href="https://wa.me/6285859044929?text=Halo%20Zetaz%20Digital,%20saya%20butuh%20bantuan%20memilih%20paket%20website" target="_blank" class="cta-btn">
+                    <a href="https://wa.me/6285859044929?text=Halo%20DarkandBright,%20saya%20butuh%20bantuan%20memilih%20paket%20website" target="_blank" class="cta-btn">
                         Konsultasi Gratis
                     </a>
                 </div>

@@ -43,7 +43,7 @@
         <div class="relative z-10">
             <h3 class="text-2xl font-bold mb-4">Selamat Datang, {{ auth()->user()->name }}!</h3>
             <p class="text-slate-400 mb-6 leading-relaxed">
-                Kelola konten website Zetaz Digital Anda dari sini. Gunakan menu analitik untuk memantau tren UMKM dan tawarkan jasa Anda pada target yang tepat.
+                Kelola konten website DarkandBright Anda dari sini. Gunakan menu analitik untuk memantau tren UMKM dan tawarkan jasa Anda pada target yang tepat.
             </p>
             <div class="flex gap-4">
                 <a href="{{ route('dashboard.analytics.index') }}" class="px-5 py-2.5 bg-blue-500 hover:bg-blue-600 rounded-lg font-bold text-sm transition-colors flex items-center">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Zetaz Digital - Website Elegan & Terpercaya untuk UMKM</title>
+    <title>DarkandBright - Website Elegan & Terpercaya untuk UMKM</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,7 +98,7 @@
 
     <footer class="site-footer">
         <div class="footer-bottom">
-            <p>&copy; 2026 Zetaz Digital. Solusi Website Terjangkau untuk UMKM Indonesia.</p>
+            <p>&copy; 2026 DarkandBright. Solusi Website Terjangkau untuk UMKM Indonesia.</p>
         </div>
     </footer>
 </body>

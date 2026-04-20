@@ -8,7 +8,7 @@
                     dan kami akan bantu transformasi digital usaha Anda hari ini juga.</p>
 
                 <div class="cta-actions">
-                    <a href="https://wa.me/6281234567890?text=Halo%20Zetaz%20Digital,%20saya%20tertarik%20untuk%20membuat%20website%20UMKM."
+                    <a href="https://wa.me/6281234567890?text=Halo%20DarkandBright,%20saya%20tertarik%20untuk%20membuat%20website%20UMKM."
                         class="btn-cta-primary" target="_blank">
                         Hubungi WhatsApp Kami
                     </a>
