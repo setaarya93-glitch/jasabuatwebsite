@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
+use Illuminate\Http\Request;
 use App\Models\Hero;
 use App\Models\Template;
+use App\Models\TemplateReview;
 use App\Http\Controllers\Dashboard\BerandaController;
 use App\Http\Controllers\Dashboard\TemplateController;
 use App\Http\Controllers\Dashboard\AnalyticsController;
@@ -21,9 +23,29 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/template/{id}', function ($id) {
-    $template = Template::findOrFail($id);
+    $template = Template::with('templateReviews')->findOrFail($id);
     return view('landing.template.details', compact('template'));
 })->name('template.details');
+
+Route::post('/template/{id}/review', function (Request $request, $id) {
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'nullable|email',
+        'rating' => 'required|integer|min:1|max:5',
+        'comment' => 'required|string|min:10|max:1000',
+    ]);
+
+    TemplateReview::create([
+        'template_id' => $id,
+        'name' => $request->name,
+        'email' => $request->email,
+        'rating' => $request->rating,
+        'comment' => $request->comment,
+        'is_approved' => true,
+    ]);
+
+    return redirect()->back()->with('success', 'Terima kasih! Ulasan Anda telah ditambahkan.');
+})->name('template.review.store');
 
 Route::get('/demo/{id}', function ($id) {
     $template = Template::findOrFail($id);

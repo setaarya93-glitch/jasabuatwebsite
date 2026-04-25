@@ -99,6 +99,42 @@
         .btn-demo { width: 100%; padding: 0.9rem; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; margin-bottom: 1rem; text-align: center; text-decoration: none; display: block; transition: all 0.3s; }
         .btn-demo:hover { background: #2563eb; }
 
+        /* REVIEW FORM */
+        .review-form-section { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border); }
+        .review-form-section h3 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-main); }
+        .review-form { background: #f8fafc; padding: 2rem; border-radius: 16px; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-main); font-size: 0.9rem; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 0.875rem 1rem; border: 1px solid var(--border); border-radius: 8px;
+            font-family: inherit; font-size: 0.95rem; transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none; border-color: var(--accent);
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .rating-input { display: flex; gap: 0.5rem; align-items: center; }
+        .star-option { font-size: 1.5rem; cursor: pointer; color: #e2e8f0; transition: color 0.2s; }
+        .star-option:hover, .star-option.active { color: #f59e0b; }
+        .btn-submit-review {
+            background: var(--primary); color: white; padding: 1rem 2rem; border: none;
+            border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer;
+            transition: all 0.3s; width: 100%;
+        }
+        .btn-submit-review:hover { background: var(--accent); }
+        .alert-success {
+            background: #dcfce7; color: #166534; padding: 1rem 1.25rem; border-radius: 8px;
+            margin-bottom: 1.5rem; border: 1px solid #86efac;
+        }
+        .alert-error {
+            background: #fee2e2; color: #991b1b; padding: 1rem 1.25rem; border-radius: 8px;
+            margin-bottom: 1.5rem; border: 1px solid #fca5a5;
+        }
+        .review-stats { display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; }
+        .rating-big { font-size: 3rem; font-weight: 800; color: var(--primary); }
+        .rating-info { color: var(--text-light); }
+        .review-count { font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
+
         /* RESPONSIVE */
         @media (max-width: 1000px) {
             .main-container { grid-template-columns: 1fr; }
@@ -161,17 +197,87 @@
             </div>
 
             <h2 class="section-header">Testimoni Pelanggan</h2>
+
+            <!-- Review Stats -->
+            <div class="review-stats">
+                <div class="rating-big">{{ number_format($template->averageRating(), 1) }}</div>
+                <div class="rating-info">
+                    <div class="rating-stars">{{ str_repeat('★', round($template->averageRating())) }}</div>
+                    <p>{{ $template->templateReviews->count() }} ulasan</p>
+                </div>
+            </div>
+
+            <!-- Reviews List -->
             <div class="reviews-list">
-                @foreach($template['reviews'] as $review)
+                @forelse($template->templateReviews as $review)
                 <div class="review-card">
                     <div class="review-user">
-                        <div class="review-avatar">{{ $review['avatar'] }}</div>
-                        <div class="review-name">{{ $review['user'] }}</div>
-                        <div class="rating-stars">{{ str_repeat('★', $review['stars']) }}</div>
+                        <div class="review-avatar">{{ strtoupper(substr($review->name, 0, 1)) }}</div>
+                        <div class="review-name">{{ $review->name }}</div>
+                        <div class="rating-stars">{{ str_repeat('★', $review->rating) }}</div>
                     </div>
-                    <p class="review-text">"{{ $review['comment'] }}"</p>
+                    <p class="review-text">"{{ $review->comment }}"</p>
+                    <small style="color: var(--text-light);">{{ $review->created_at->diffForHumans() }}</small>
                 </div>
-                @endforeach
+                @empty
+                <p style="color: var(--text-light); text-align: center; padding: 2rem;">Belum ada ulasan. Jadilah yang pertama memberikan review!</p>
+                @endforelse
+            </div>
+
+            <!-- Review Form -->
+            <div class="review-form-section">
+                <h3>📝 Tulis Ulasan Anda</h3>
+
+                @if(session('success'))
+                <div class="alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
+
+                @if($errors->any())
+                <div class="alert-error">
+                    <ul style="margin: 0; padding-left: 1rem;">
+                        @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
+                <form action="{{ route('template.review.store', $template->id) }}" method="POST" class="review-form">
+                    @csrf
+                    <div class="form-group">
+                        <label>Nama Anda *</label>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Contoh: Budi Santoso" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email (opsional)</label>
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rating *</label>
+                        <div class="rating-input">
+                            @for($i = 1; $i <= 5; $i++)
+                            <label class="star-option" style="cursor: pointer;">
+                                <input type="radio" name="rating" value="{{ $i }}" required style="display: none;" {{ old('rating') == $i ? 'checked' : '' }}>
+                                <span onclick="setRating({{ $i }})">★</span>
+                            </label>
+                            @endfor
+                            <span id="rating-text" style="margin-left: 0.5rem; color: var(--text-light); font-size: 0.9rem;">Pilih rating</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ulasan Anda *</label>
+                        <textarea name="comment" placeholder="Bagikan pengalaman Anda dengan template ini..." required minlength="10">{{ old('comment') }}</textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit-review">
+                        ⭐ Kirim Ulasan
+                    </button>
+                </form>
             </div>
         </div>
 
@@ -230,6 +336,43 @@
                 tab.classList.add('active');
                 const pkgId = 'pkg-' + tab.getAttribute('data-package');
                 document.getElementById(pkgId).style.display = 'block';
+            });
+        });
+
+        // Rating stars functionality
+        function setRating(rating) {
+            const stars = document.querySelectorAll('.star-option span');
+            const ratingText = document.getElementById('rating-text');
+            const ratings = ['Sangat Buruk', 'Buruk', 'Cukup', 'Bagus', 'Sangat Bagus'];
+
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.parentElement.classList.add('active');
+                } else {
+                    star.parentElement.classList.remove('active');
+                }
+            });
+
+            ratingText.textContent = ratings[rating - 1];
+        }
+
+        // Hover effect for stars
+        document.querySelectorAll('.star-option').forEach((star, index) => {
+            star.addEventListener('mouseenter', () => {
+                const stars = document.querySelectorAll('.star-option');
+                stars.forEach((s, i) => {
+                    if (i <= index) {
+                        s.querySelector('span').style.color = '#f59e0b';
+                    } else {
+                        s.querySelector('span').style.color = '#e2e8f0';
+                    }
+                });
+            });
+
+            star.addEventListener('mouseleave', () => {
+                const selectedRating = document.querySelector('input[name="rating"]:checked');
+                const rating = selectedRating ? parseInt(selectedRating.value) : 0;
+                setRating(rating);
             });
         });
     </script>
